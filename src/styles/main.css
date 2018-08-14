@@ -1,0 +1,112 @@
+html{
+   background-color: #090446
+}
+
+body {
+   color:#052F5F;
+   -webkit-text-stroke-color: #090446;
+   -webkit-text-stroke-width: 0.25px; 
+    font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif
+}
+
+.instructions h1 {
+    font-size: 9em;
+    font-weight: 700;
+}
+
+.instructions {
+    background-color: #00acb0;
+    padding: 0px;
+    color: #052F5F;
+}
+
+form {
+   font-size: 1.125em;
+   color: #052F5F;
+   text-align: center;
+    background-color: #FDCE38;
+    width: 350px;
+    height: 350px;
+    margin-top: 10px;
+    margin-left: 35%;
+    padding-top: 10px;
+    border-radius: 175px;
+    box-shadow:0 0 100px #FDCE38;
+}
+
+form h1{
+   font-size: 1.8em;
+   color: #052F5F;
+   align-content: center;
+   font-weight: bolder;
+   margin-top: 40px;
+}
+
+
+
+.formDiv{
+   text-align: center;
+   padding: 0;
+}
+
+input {
+    margin: 5px;
+    margin-top: 10px;
+}
+
+input[type="submit"] {
+    margin: 10px;
+}
+
+.message {
+   color: #0072BB;
+    padding: 10px 0;
+}
+
+.message p {
+   color: #0072BB;
+    margin-left: 10px;
+}
+
+.message:nth-child(odd) {
+     background-color: #eeeeee;
+}
+
+.message:nth-child(even) {
+    background-color: #f8f8f8;
+}
+
+.navbar {
+  background-color: #00acb0;
+  width: 100%;
+  border-radius: 0px;
+}
+
+ul {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+    overflow: hidden;
+}
+
+li {
+    float: left;
+}
+
+li a {
+    display: block;
+    color: white;
+    text-align: center;
+    padding: 14px 16px;
+    text-decoration: none;
+
+}
+
+/* Change the link color to #111 (black) on hover */
+li a:hover {
+    text-decoration: underline;
+    color: #eee;
+ 
+}
+
+

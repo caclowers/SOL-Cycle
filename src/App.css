@@ -1,0 +1,86 @@
+.App {
+   text-align: center;
+   
+ }
+ 
+main{
+   font-size: 2em;
+}
+
+h1{
+   margin: 0;
+   font-size: 3.5em;
+   -webkit-text-stroke-color: #FDCE38;
+   -webkit-text-stroke-width: 1px;
+}
+ .App-logo {
+   animation: App-logo-spin infinite 30s linear;
+   height: 110px;
+ }
+ 
+ .App-header {
+   text-align: center;
+  
+   background-color: #052F5F;
+   height: 200px;
+   padding: 0px;
+ }
+ 
+ .App-title {
+    color: #FDCE38;
+    font-size: 200px;
+   margin: 0;
+   padding: 0;
+   -webkit-text-stroke-color: #090446;
+   -webkit-text-stroke-width: 1.5px;
+   text-shadow: 0 0 50px #FDCE38;
+ }
+ 
+ .App-intro {
+   font-size: large;
+   margin: 0;
+   color: #B8B8D1;
+ }
+ 
+ .bodyDiv{
+    background-color: #090446;
+    height: 1000px;
+    text-align: center;
+ }
+ 
+ .cardDiv{
+    border:5px solid #FDCE38;
+    width: 60%;
+    margin-left: 20%;
+ }
+
+ .infoDiv{
+    width: 45%;
+    color: #FDCE38;
+    margin-left: 25%;
+    
+ }
+ button{
+    height: 45px;
+    width: 240px;
+    margin: 15px;
+    padding: 0;
+    font-size: 1.5em;
+    background-color: #090446;
+    color: #052F5F;
+    border: 2px solid #FDCE38;
+    -webkit-text-stroke-color: #FDCE38;
+   -webkit-text-stroke-width: 0.5px;
+ }
+ .indexNumber{
+    font-size: 30em;
+    margin-top: -100px;
+    margin-bottom: -100px;
+    text-shadow: 0 0 50px #FDCE38;
+ }
+ 
+ @keyframes App-logo-spin {
+   from { transform: rotate(0deg); }
+   to { transform: rotate(360deg); }
+ }
+ 

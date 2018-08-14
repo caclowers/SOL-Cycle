@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { Link } from 'react-router-dom';
 
-import Nav from '../../components/Nav/Nav';
+// import Nav from '../../components/Nav/Nav';
 
 import { USER_ACTIONS } from '../../redux/actions/userActions';
 import { triggerLogout } from '../../redux/actions/loginActions';
@@ -10,6 +10,7 @@ import { triggerLogout } from '../../redux/actions/loginActions';
 
 const mapStateToProps = state => ({
    user: state.user,
+   city: state.city
 });
 
 class UserPage extends Component {
@@ -31,11 +32,13 @@ class UserPage extends Component {
    render() {
       let content = null;
 
+
       if (this.props.user.userName) {
          content = (
             <div className="bodyDiv">
+            <main id="welcome">Welcome, {this.props.user.userName}!</main>
                <div className="cardDiv">
-                  <main id="welcome">Welcome, {this.props.user.userName}!</main>
+                  
                   <h1>UV Index</h1>
                   <h1 className="indexNumber">8</h1>
                   <h3>{this.props.user.city}</h3>
@@ -50,7 +53,7 @@ class UserPage extends Component {
 
       return (
          <div>
-            <Nav />
+            {/* <Nav /> */}
             {content}
          </div>
       );
@@ -60,3 +63,7 @@ class UserPage extends Component {
 // this allows us to use <App /> in index.js
 export default connect(mapStateToProps)(UserPage);
 
+
+
+
+ 

@@ -1,6 +1,8 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { Link } from 'react-router-dom';
+import EditLocationModal from './EditLocationModal.js'
+import axios from 'axios';
 
 // import Nav from '../../components/Nav/Nav';
 
@@ -10,10 +12,18 @@ import { triggerLogout } from '../../redux/actions/loginActions';
 
 const mapStateToProps = state => ({
    user: state.user,
-   city: state.city
+   city: state.city,
+   isModalOpen: false
 });
 
 class UserPage extends Component {
+   constructor(props){
+      super(props);
+      this.state = {
+         uvIndex: ''
+      }
+   }
+      
    componentDidMount() {
       this.props.dispatch({ type: USER_ACTIONS.FETCH_USER });
    }
@@ -29,6 +39,26 @@ class UserPage extends Component {
       // this.props.history.push('home');
    }
 
+   openEditLocationModal() {
+      this.setState({ isModalOpen: true })
+    }
+  
+    closeEditLocationModal() {
+      this.setState({ isModalOpen: false })
+    }
+
+    getUVIndex = () => {
+      axios('https://api.darksky.net/forecast/cbbd7ef6d4a32d1afa75ace009b3393d/37.8267,-122.4233').then((response) => {
+         console.log(response);
+         this.setState({
+            
+            uvIndex: response.data.currently.uvIndex
+      })
+         console.log(this.state.uvIndex);
+         
+      })
+    }
+
    render() {
       let content = null;
 
@@ -36,13 +66,16 @@ class UserPage extends Component {
       if (this.props.user.userName) {
          content = (
             <div className="bodyDiv">
-            <main id="welcome">Welcome, {this.props.user.userName}!</main>
+            <main id="welcome">Hi,<br/> {this.props.user.userName}!</main>
                <div className="cardDiv">
                   
                   <h1>UV Index</h1>
                   <h1 className="indexNumber">8</h1>
                   <h3>{this.props.user.city}</h3>
-                  <button >Add&nbsp;/&nbsp;Edit Location(s)</button>
+                  <h2>Aug. 14, 2018</h2>
+                  <h1>Minneapolis, MN</h1>
+                  <button onClick={this.getUVIndex}>Add&nbsp;/&nbsp;Edit Location(s)</button>
+                  <EditLocationModal isOpen={this.props.isModalOpen} onClose={() => this.closeEditLocationModal()}></EditLocationModal>
                   <button >History Graph</button>
                   <button ><Link to="/info">What is UV?</Link></button><br/>
                   <button onClick={this.logout}>Log Out</button>

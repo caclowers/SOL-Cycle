@@ -4,15 +4,20 @@ html{
 
 body {
    color:#052F5F;
-   -webkit-text-stroke-color: #090446;
-   -webkit-text-stroke-width: 0.25px; 
+   -webkit-text-stroke-color: #FDCE38;
+   -webkit-text-stroke-width: 0.5px;
+   
     font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif
 }
 
 #welcome{
-   text-align: left;
+   position: absolute;
+   font-size: 2.5em;
+   top:20px;
+   transform: rotate(-12deg);
+   text-align: center;
    -webkit-text-stroke-color: #FDCE38;
-   -webkit-text-stroke-width: 0.25px;
+   -webkit-text-stroke-width: 0.33px;
 }
 
 .instructions h1 {
@@ -48,12 +53,11 @@ form h1{
    margin-top: 40px;
 }
 
-
-
 .formDiv{
    text-align: center;
    padding: 0;
 }
+
 
 input {
     margin: 5px;
@@ -92,7 +96,6 @@ input[type="submit"] {
 ul {
     list-style-type: disc;
     margin: 0;
-    padding: 0;
     overflow: hidden;
 }
 

@@ -24,8 +24,10 @@ router.post('/register', (req, res, next) => {
   const state = req.body.State;
 
 
-  const queryText = 'INSERT INTO "user" (username, password) VALUES ($1, $2) RETURNING id';
-  pool.query(queryText, [username, password])
+//   const queryText = 'INSERT INTO "user" (username, password) VALUES ($1, $2) RETURNING id';
+  const queryText2 = 'INSERT INTO "locations" (city, state, latitude, longitude) VALUES ($1, $2, $3, $4) RETURNING id';
+  pool.query(queryText2, [city, state, 44, 123])
+//   .then(pool.query(queryText2, [city, state]))
     .then(() => { res.sendStatus(201); })
     .catch((err) => { next(err); });
 });

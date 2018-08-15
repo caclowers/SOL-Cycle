@@ -7,7 +7,9 @@ main{
    font-size: 2em;
 }
 
+
 h1{
+   text-align: center;
    margin: 0;
    font-size: 3.5em;
    -webkit-text-stroke-color: #FDCE38;
@@ -25,6 +27,7 @@ li {
   list-style-type: disc;
    float: left;
 }
+
 
 
  .App-logo {
@@ -46,7 +49,7 @@ li {
    margin: 0;
    padding: 0;
    -webkit-text-stroke-color: #090446;
-   -webkit-text-stroke-width: 1.5px;
+   -webkit-text-stroke-width: 2.5px;
    text-shadow: 0 0 50px #FDCE38;
  }
  
@@ -64,16 +67,28 @@ li {
  
  .cardDiv{
     border:5px solid #FDCE38;
-    width: 60%;
+    width: 75%;
+    height: auto;
     margin-top: 12px;
-    margin-left: 20%;
+    margin-left: 12.5%;
+    box-shadow: 0 0 25px #FDCE38;
+    box-shadow: inset 0 0 25px #FDCE38;
  }
 
+.h2ToCenter{
+   text-align: center
+}
+
  .infoDiv{
+    position: relative;
     list-style-type: disc;
-    width: 45%;
+    width: 75%;
     color: #FDCE38;
-    margin-left: 25%;
+    margin-left: 10%;
+    margin-top: 12px;
+    padding-left: 20px;
+    padding-right: 20px;
+    border: 5px solid #FDCE38;
     
  }
  button{
@@ -111,6 +126,16 @@ button a:hover {
   
 }
 
+#infoHeader{
+   display: inline-flex;
+}
+
+#infoHome{
+   position: absolute;
+   right: 0;
+   margin: 20px;
+}
+
 /* Change the link color to #111 (black) on hover */
 
 
@@ -119,6 +144,7 @@ button a:hover {
     margin-top: -100px;
     margin-bottom: -100px;
     text-shadow: 0 0 35px #FDCE38;
+    
  }
 
  

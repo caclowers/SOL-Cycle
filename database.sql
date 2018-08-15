@@ -16,7 +16,7 @@ CREATE TABLE "locations" (
 "id" SERIAL PRIMARY KEY,
 "city" VARCHAR(255),
 "state" VARCHAR(255),
-"latitude" DECIMAL NOT NULL,
-"longitude" DECIMAL NOT NULL,
+"latitude" DECIMAL,
+"longitude" DECIMAL,
 "user_id" INT REFERENCES "user"
 );

@@ -26,10 +26,19 @@ class InfoPage extends Component {
 
       if (this.props.user.userName) {
          content = (
+            <div>
+               <main id="welcome">Hi,<br/> {this.props.user.userName}!</main>
             <div className="infoDiv">
-               <h1>What is UV?</h1>
-               <button><Link to="/user">Back to Home</Link></button>
+            
+               <div id="infoHeader">
+                  <h1>What is UV?</h1>
+                  <button id="infoHome"><Link to="/user">Back to Home</Link></button>
+               </div>
+               <br/>
+               <br/>
+               <br/>
                <InfoList />
+            </div>
             </div>
          );
       }

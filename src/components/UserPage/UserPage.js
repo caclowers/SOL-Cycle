@@ -48,11 +48,12 @@ class UserPage extends Component {
     }
 
     getUVIndex = () => {
-      axios('https://api.darksky.net/forecast/cbbd7ef6d4a32d1afa75ace009b3393d/37.8267,-122.4233').then((response) => {
-         console.log(response);
+      axios('https://api.darksky.net/forecast/cbbd7ef6d4a32d1afa75ace009b3393d/44.94191854268716,-93.38420208025178').then((response) => {
+         // axios('https://maps.googleapis.com/maps/api/geocode/json?address=boseman,+MT&key=AIzaSyDnjD2cYoMBqVyqqe4BtBugAQRNiXn7OTY').then((response) => { 
+      console.log(response);
          this.setState({
-            
             uvIndex: response.data.currently.uvIndex
+            // uvIndex: response.data.results[0].geometry.location.lng
       })
          console.log(this.state.uvIndex);
          
@@ -70,7 +71,7 @@ class UserPage extends Component {
                <div className="cardDiv">
                   
                   <h1>UV Index</h1>
-                  <h1 className="indexNumber">8</h1>
+                  <h1 className="indexNumber">{this.state.uvIndex}</h1>
                   <h3>{this.props.user.city}</h3>
                   <h2>Aug. 14, 2018</h2>
                   <h1>Minneapolis, MN</h1>

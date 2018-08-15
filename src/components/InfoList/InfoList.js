@@ -14,7 +14,7 @@ class InfoList extends Component {
             < br />
             <br />
             <ul>
-               <li>
+               <li >
                   Wear sunglasses on bright days.
                </li>
                <li>

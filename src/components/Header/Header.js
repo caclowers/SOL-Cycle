@@ -2,6 +2,8 @@ import React from 'react';
 import logo from './sun.png';
 import '../../App.css';
 
+
+
 const Header = ({ title }) => (
   <div className="instructions">
     <header className="App-header">

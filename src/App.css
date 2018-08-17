@@ -1,21 +1,53 @@
-.App {
-   text-align: center;
-   
- }
- 
+button{
+   background-color: #090446;
+   border: 2px solid #FDCE38;
+   box-shadow: 0 0 25px #FDCE38, inset 0 0 25px #FDCE38;
+   color: #052F5F;
+   /* float: left; */
+   font-size: 1.5em;
+   height: 45px;
+   margin: 15px;
+   padding: 0;
+   text-shadow: 0 0 5px #FDCE38;
+   transition: 1s;
+   -webkit-text-stroke-color: #FDCE38;
+   -webkit-text-stroke-width: 0.5px;
+   width: 240px;
+} 
+
+button:hover {
+   box-shadow: 0 0 55px #FDCE38, inset 0 0 65px #FDCE38;;
+   color: #FDCE38;
+   text-decoration: underline;
+}
+
+button a{
+   color: #052F5F;
+   -webkit-text-stroke-color: #FDCE38;
+   -webkit-text-stroke-width: 0.5px;
+}
+
+button a:hover {
+   color: #FDCE38;
+   text-decoration: underline;
+}
+
 main{
    font-size: 2em;
 }
 
-
 h1{
-   text-align: center;
-   margin: 0;
    font-size: 3.5em;
+   margin: 0;
+   text-align: center;
    -webkit-text-stroke-color: #FDCE38;
    -webkit-text-stroke-width: 1px;
 }
 
+li {
+  float: left;
+  list-style-type: disc;
+}
 
 ul {
    list-style-type: disc;
@@ -23,134 +55,97 @@ ul {
    overflow: hidden;
 }
 
-li {
-  list-style-type: disc;
-   float: left;
-}
-
-
-
- .App-logo {
-   animation: App-logo-spin infinite 30s linear;
-   height: 110px;
- }
- 
- .App-header {
-   text-align: center;
-  
-   background-color: #052F5F;
-   height: 200px;
-   padding: 0px;
- }
- 
- .App-title {
-    color: #FDCE38;
-    font-size: 200px;
-   margin: 0;
-   padding: 0;
-   -webkit-text-stroke-color: #090446;
-   -webkit-text-stroke-width: 2.5px;
-   text-shadow: 0 0 50px #FDCE38;
- }
- 
- .App-intro {
-   font-size: large;
-   margin: 0;
-   color: #B8B8D1;
- }
- 
- .bodyDiv{
-    background-color: #090446;
-    height: 1000px;
-    text-align: center;
- }
- 
- .cardDiv{
-    border:5px solid #FDCE38;
-    width: 75%;
-    height: auto;
-    margin-top: 12px;
-    margin-left: 12.5%;
-    box-shadow: 0 0 25px #FDCE38;
-    box-shadow: inset 0 0 25px #FDCE38;
- }
-
-.h2ToCenter{
-   text-align: center
-}
-
- .infoDiv{
-    position: relative;
-    list-style-type: disc;
-    width: 75%;
-    color: #FDCE38;
-    margin-left: 10%;
-    margin-top: 12px;
-    padding-left: 20px;
-    padding-right: 20px;
-    border: 5px solid #FDCE38;
-    
- }
- button{
-    height: 45px;
-    width: 240px;
-    margin: 15px;
-    padding: 0;
-    font-size: 1.5em;
-    text-shadow: 0 0 5px #FDCE38;
-    box-shadow: 0 0 15px #FDCE38;
-    background-color: #090446;
-    color: #052F5F;
-    border: 2px solid #FDCE38;
-    -webkit-text-stroke-color: #FDCE38;
-   -webkit-text-stroke-width: 0.5px;
-  transition: 0.3s;
-}
- 
- button:hover {
-   box-shadow: 0 0 35px #FDCE38;
-   text-decoration: underline;
-   color: #FDCE38;
-  
-}
-
-button a{
-   color: #052F5F;
-    -webkit-text-stroke-color: #FDCE38;
-   -webkit-text-stroke-width: 0.5px;
-}
-
-button a:hover {
-   text-decoration: underline;
-   color: #FDCE38;
-  
-}
+/* ============================================================== */
 
 #infoHeader{
    display: inline-flex;
 }
 
 #infoHome{
+   margin: 20px;
    position: absolute;
    right: 0;
-   margin: 20px;
 }
 
-/* Change the link color to #111 (black) on hover */
+/* ============================================================== */
 
+.App {
+   text-align: center;
+}   
 
- .indexNumber {
-    font-size: 30em;
-    margin-top: -100px;
-    margin-bottom: -100px;
-    text-shadow: 0 0 35px #FDCE38;
+.App-header {
+   background-color: #052F5F;
+   height: 200px;
+   padding: 0px;
+   text-align: center;
+}
+
+.App-intro {
+   color: #B8B8D1;
+   font-size: large;
+   margin: 0;
+}
+
+.App-logo {
+   animation: App-logo-spin infinite 30s linear;
+   height: 110px;
+}
+ 
+.App-title {
+   color: #FDCE38;
+   font-size: 200px;
+   margin: 0;
+   padding: 0;
+   text-shadow: 0 0 50px #FDCE38;
+   -webkit-text-stroke-color: #090446;
+   -webkit-text-stroke-width: 2.5px;
+}
+
+.bodyDiv{
+    background-color: #090446;
+    height: 1000px;
+    text-align: center;
+}
+ 
+.cardDiv{
+    border:5px solid #FDCE38;
+    box-shadow: 0 0 25px #FDCE38, inset 0 0 25px #FDCE38;
     
- }
+    height: auto;
+    margin-top: 12px;
+    margin-left: 12.5%;
+    position: absolute;
+    width: 75%;
+}
 
- 
- 
- @keyframes App-logo-spin {
+.h2ToCenter{
+   text-align: center
+}
+
+.indexNumber {
+    font-size: 30em;
+    margin-bottom: -100px;
+    margin-top: -100px;
+    text-shadow: 0 0 35px #FDCE38; 
+}
+
+.infoDiv{
+   border: 5px solid #FDCE38;
+   box-shadow: 0 0 25px #FDCE38, inset 0 0 25px #FDCE38;
+   color: #FDCE38;
+   list-style-type: disc;
+   margin-left: 10%;
+   margin-top: 12px;
+   padding-left: 20px;
+   padding-right: 20px;
+   position: relative;
+   width: 75%;
+}
+
+ /* ============================================================ */
+
+@keyframes App-logo-spin {
    from { transform: rotate(0deg); }
    to { transform: rotate(360deg); }
- }
+}
  

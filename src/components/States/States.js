@@ -10,7 +10,7 @@ class States extends Component {
       super(props);
 
       this.state = {
-         State: '',
+         newState: '',
       };
    }
 
@@ -18,14 +18,20 @@ class States extends Component {
       this.setState({
          [propertyName]: event.target.value,
       });
+      this.props.dispatch({
+         type: 'EDIT_STATE',
+         payload: this.state.newState
+      })
+      console.log(this.state.newState);
+      
    }
 
   render(){
      return (
       <select type="select"
       name="State"
-      value={this.state.State}
-      onChange={this.handleInputChangeFor('State')}>
+      // value={this.state.State}
+      onChange={this.handleInputChangeFor('newState')}>
       <option value="Alabama">AL</option>
       <option value="Alaska">AK</option>
       <option value="Arizona">AZ</option>

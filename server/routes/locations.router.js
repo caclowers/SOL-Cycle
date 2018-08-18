@@ -7,15 +7,15 @@ const router = express.Router();
  */
 router.get('/', (req, res) => {
    console.log('id', req.user.id);
-   
+
    const user_id = req.user.id
    const queryText = `SELECT * FROM "locations" WHERE "user_id" = $1;`;
    pool.query(queryText, [user_id]).then((results) => {
       console.log(results.rows);
-      
+
       res.send(results.rows)
    })
-    
+
 });
 
 /**

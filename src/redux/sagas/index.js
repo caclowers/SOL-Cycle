@@ -50,6 +50,21 @@ function* getDisplayLocationsSaga(action) {
          type: 'SHOW_LOCATION',
          payload: userInfo.data
       })
+      const locationCoordinates = yield axios(`https://maps.googleapis.com/maps/api/geocode/json?address=${userInfo.data.city},+${userInfo.data.state}&key=AIzaSyDnjD2cYoMBqVyqqe4BtBugAQRNiXn7OTY`)
+            // .then((response) => {
+            //    console.log(response);
+               
+            //    // this.setState({
+            //    //    lat: response.data.results[0].geometry.location.lat,
+            //    //    long: response.data.results[0].geometry.location.lng
+            //    // });
+            //    console.log(this.state.lat);
+            //    console.log(this.state.long);
+            // })
+            yield dispatch({
+               type: 'STORING_COORDINATES',
+               payload: locationCoordinates.data.results[0].geometry.location
+            })
    } catch(error){
       console.log('error in getDataSaga:', error);
    }

@@ -28,11 +28,23 @@ const displayLocation = (state = [], action) => {
    }
 }
 
+const coordinateStore = (state = {}, action) => {
+   switch (action.type) {
+      case 'STORING_COORDINATES':
+      console.log('+++++++', action.payload);
+      
+         return action.payload;
+      default:
+         return state;
+   }
+}
+
 const store = combineReducers({
    user,
    login,
    userLocations,
-   displayLocation
+   displayLocation,
+   coordinateStore
 });
 
 

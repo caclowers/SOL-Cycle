@@ -14,7 +14,8 @@ import { triggerLogout } from '../../redux/actions/loginActions';
 const mapStateToProps = state => ({
    user: state.user,
    userLocations: state.userLocations,
-   displayLocation: state.displayLocation
+   displayLocation: state.displayLocation,
+   coordinateStore: state.coordinateStore
 });
 
 class UserPage extends Component {
@@ -31,33 +32,37 @@ class UserPage extends Component {
       };
    };
 
-   componentDidMount() {
+
+  async componentDidMount() {
       window.scrollTo(0, 0);
 
-      this.props.dispatch({ type: 'FETCH_COORDINATES' });
-
-      this.props.dispatch({ type: 'GET_DISPLAY_LOCATIONS' });
-      console.log(this.props.userLocations.state);
+       
+        
+         
+         await this.props.dispatch({ type: 'GET_DISPLAY_LOCATIONS' });
+          console.log('**********', this.props.displayLocation.city);
+         // axios(`https://maps.googleapis.com/maps/api/geocode/json?address=${this.props.displayLocation.city},+${this.props.displayLocation.state}&key=AIzaSyDnjD2cYoMBqVyqqe4BtBugAQRNiXn7OTY`)
+         //    .then((response) => {
+         //       console.log(response);
+               
+         //       // this.setState({
+         //       //    lat: response.data.results[0].geometry.location.lat,
+         //       //    long: response.data.results[0].geometry.location.lng
+         //       // });
+         //       console.log(this.state.lat);
+         //       console.log(this.state.long);
+         //    })
+         await this.props.dispatch({ type: 'GET_DISPLAY_LOCATIONS' });
+         console.log(this.props.userLocations.state);
+         axios(`https://api.darksky.net/forecast/cbbd7ef6d4a32d1afa75ace009b3393d/${this.props.coordinateStore.lat},${this.props.coordinateStore.lng}`)
+            .then((response) => {
+               console.log(response);
+               this.setState({
+                  uvIndex: response.data.currently.uvIndex
+               });
+               console.log(this.state.uvIndex);
+            })
       
-      axios(`https://maps.googleapis.com/maps/api/geocode/json?address=minneapolis,+mn&key=AIzaSyDnjD2cYoMBqVyqqe4BtBugAQRNiXn7OTY`)
-         .then((response) => {
-            this.setState({
-               lat: response.data.results[0].geometry.location.lat,
-               long: response.data.results[0].geometry.location.lng
-            });
-            console.log(this.state.lat);
-            console.log(this.state.long);
-         })
-         .then(() => {
-            axios(`https://api.darksky.net/forecast/cbbd7ef6d4a32d1afa75ace009b3393d/${this.state.lat},${this.state.long}`)
-               .then((response) => {
-                  console.log(response);
-                  this.setState({
-                     uvIndex: response.data.currently.uvIndex
-                  });
-                  console.log(this.state.uvIndex);
-               })
-         });
    };
 
    componentDidUpdate() {
@@ -104,12 +109,12 @@ class UserPage extends Component {
    render() {
       console.log(this.props.userLocations.city);
       console.log(this.state);
-      
+
       let content = null;
 
       let locationArray = this.props.userLocations.map((location, index) => {
          return (
-         <option value={location.id}>{location.city[0].toUpperCase() + location.city.slice(1)},&nbsp;{location.state}</option>
+            <option value={location.id}>{location.city[0].toUpperCase() + location.city.slice(1)},&nbsp;{location.state}</option>
          );
       })
 

@@ -13,7 +13,8 @@ import { triggerLogout } from '../../redux/actions/loginActions';
 
 const mapStateToProps = state => ({
    user: state.user,
-   userLocation: state.userLocation,
+   userLocations: state.userLocations,
+   displayLocation: state.displayLocation
 });
 
 class UserPage extends Component {
@@ -21,8 +22,8 @@ class UserPage extends Component {
       super(props);
       this.state = {
          uvIndex: '',
-         city: '',
-         State: '',
+         city: this.props.userLocations.city,
+         State: this.props.userLocations.State,
          newCity: '',
          newState: '',
          lat: '',
@@ -34,7 +35,11 @@ class UserPage extends Component {
       window.scrollTo(0, 0);
 
       this.props.dispatch({ type: 'FETCH_COORDINATES' });
-      axios(`https://maps.googleapis.com/maps/api/geocode/json?address=${this.props.userLocation.city},+${this.props.userLocation.state}&key=AIzaSyDnjD2cYoMBqVyqqe4BtBugAQRNiXn7OTY`)
+
+      this.props.dispatch({ type: 'GET_DISPLAY_LOCATIONS' });
+      console.log(this.props.userLocations.state);
+      
+      axios(`https://maps.googleapis.com/maps/api/geocode/json?address=minneapolis,+mn&key=AIzaSyDnjD2cYoMBqVyqqe4BtBugAQRNiXn7OTY`)
          .then((response) => {
             this.setState({
                lat: response.data.results[0].geometry.location.lat,
@@ -73,32 +78,46 @@ class UserPage extends Component {
       })
    }
 
+   submitDelete = (event) => {
+      this.props.dispatch({
+         type: 'SUBMIT_DELETE',
+         payload: this.props.user.id
+      })
+   }
+
    submitEdit = (event) => {
       //send input data to state
       this.props.dispatch({
          type: 'SUBMIT_EDIT',
          payload: this.state
       });
-
-
-      //refresh the component
+      // then refresh the component
    }
 
-   submitDelete = (event) => {
+   submitNewLocation = (event) => {
       this.props.dispatch({
-         type: 'FETCH_COORDINATES',
+         type: 'SUBMIT_NEW_LOCATION',
+         payload: this.state
       })
    }
 
    render() {
+      console.log(this.props.userLocations.city);
       console.log(this.state);
+      
       let content = null;
 
-      let deleteLocationArray = this.props.userLocation.map((location, index) => {
+      let locationArray = this.props.userLocations.map((location, index) => {
          return (
-         <option value={location.id}>{location.city},&nbsp;{location.state}</option>
+         <option value={location.id}>{location.city[0].toUpperCase() + location.city.slice(1)},&nbsp;{location.state}</option>
          );
       })
+
+      // let locationDisplay = this.props.userLocations.map((location, index) => {
+      //    return (
+      //       <h1>{location.city[0].toUpperCase() + location.city.slice(1)},&nbsp;{location.state}</h1>
+      //    );
+      // })
 
       if (this.props.user.userName) {
          content = (
@@ -107,14 +126,15 @@ class UserPage extends Component {
                <div className="cardDiv">
                   <h1>UV Index</h1>
                   <h1 className="indexNumber">{this.state.uvIndex}</h1>
-                  {/* <h3>{this.props.userLocation.city}, {this.props.userLocation.state} </h3> */}
+                  {/* {locationDisplay} */}
+                  <h1>{this.props.displayLocation.city[0].toUpperCase() + this.props.displayLocation.city.slice(1)},&nbsp;{this.props.displayLocation.state}</h1>
                   <h2>{moment().format("dddd - MMMM Do, YYYY, h:mm a")}</h2>
-                  <h1>Minneapolis, MN</h1>
+                  {/* <h1 >Minneapolis, MN</h1> */}
                   {/* <button onClick={this.openEditLocationModal}>Add&nbsp;/&nbsp;Edit Location(s)</button> */}
-                  <SimpleModalLauncher buttonLabel="Add / Edit Location(s)">
+                  <SimpleModalLauncher buttonLabel="Locations">
                      <form className="editModal" >
                         <div className="locationModal">
-                           <h3>Add / Edit Location</h3>
+                           <h3>Add A Location</h3>
                            <div>
                               <label htmlFor="city">
                                  City:
@@ -189,12 +209,21 @@ class UserPage extends Component {
                               </label>
                            </div>
                            <div>
-                              <input type="submit" value="submit" onSubmit={this.submitEdit} />
-                           </div><br />
+                              <input type="submit" value="submit" onSubmit={this.submitNewLocation} />
+                           </div>
                            <div>
                               <label htmlFor="delete">
-                                 Delete Location:<br />
-                                 <select type="select" name="Locations">{deleteLocationArray}</select>
+                                 <h3>Change Current Location</h3>
+                                 <select type="select" name="Locations">{locationArray}</select>
+                              </label>
+                              <div>
+                                 <input type="submit" value="Switch" onSubmit={this.submitEdit} />
+                              </div>
+                           </div>
+                           <div>
+                              <label htmlFor="delete">
+                                 <h3>Delete A Location</h3>
+                                 <select type="select" name="Locations">{locationArray}</select>
                               </label>
                               <div>
                                  <input type="submit" value="Delete" onSubmit={this.submitDelete} />

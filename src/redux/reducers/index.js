@@ -2,22 +2,37 @@ import { combineReducers } from 'redux';
 import user from './userReducer';
 import login from './loginReducer';
 
-const userLocation = (state = [], action) => {
+const userLocations = (state = [], action) => {
    switch (action.type) {
       case 'GET_DATA':
+         console.log(action.payload);
          return action.payload;
-      case 'FETCH_COORDINATES':
-         return state;
+      case 'CREATE_NEW_USER_LOCATION':
+         console.log(action.payload);
+         return action.payload;
+
+      // case 'FETCH_COORDINATES':
+      //    return action.payload;
       default:
          return state;
    }
 }
 
+const displayLocation = (state = [], action) => {
+   switch (action.type) {
+      case 'SHOW_LOCATION':
+         console.log(action.payload);
+         return action.payload;
+      default:
+         return state;
+   }
+}
 
 const store = combineReducers({
    user,
    login,
-   userLocation,
+   userLocations,
+   displayLocation
 });
 
 

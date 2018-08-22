@@ -4,24 +4,28 @@ import { Link } from 'react-router-dom';
 // import EditLocationModal from './EditLocationModal.js'
 import axios from 'axios';
 import SimpleModalLauncher from '../SimpleModalLauncher/SimpleModalLauncher';
-// import States from '../States/States.js';
+import States from '../States/States.js';
 import moment from 'moment';
 // import Nav from '../../components/Nav/Nav';
 import { USER_ACTIONS } from '../../redux/actions/userActions';
 import { triggerLogout } from '../../redux/actions/loginActions';
+import * as V from 'victory';
+import { VictoryChart, VictoryTheme, VictoryLine } from 'victory';
 
 
 const mapStateToProps = state => ({
    user: state.user,
    userLocations: state.userLocations,
    displayLocation: state.displayLocation,
-   coordinateStore: state.coordinateStore
+   coordinateStore: state.coordinateStore,
+   graphStore: state.graphStore
 });
 
 class UserPage extends Component {
    constructor(props) {
       super(props);
       this.state = {
+         userID: this.props.user.id,
          uvIndex: '',
          city: this.props.userLocations.city,
          State: this.props.userLocations.State,
@@ -33,36 +37,22 @@ class UserPage extends Component {
    };
 
 
-  async componentDidMount() {
+   async componentDidMount() {
       window.scrollTo(0, 0);
 
-       
-        
-         
-         await this.props.dispatch({ type: 'GET_DISPLAY_LOCATIONS' });
-          console.log('**********', this.props.displayLocation.city);
-         // axios(`https://maps.googleapis.com/maps/api/geocode/json?address=${this.props.displayLocation.city},+${this.props.displayLocation.state}&key=AIzaSyDnjD2cYoMBqVyqqe4BtBugAQRNiXn7OTY`)
-         //    .then((response) => {
-         //       console.log(response);
-               
-         //       // this.setState({
-         //       //    lat: response.data.results[0].geometry.location.lat,
-         //       //    long: response.data.results[0].geometry.location.lng
-         //       // });
-         //       console.log(this.state.lat);
-         //       console.log(this.state.long);
-         //    })
-         await this.props.dispatch({ type: 'GET_DISPLAY_LOCATIONS' });
-         console.log(this.props.userLocations.state);
-         axios(`https://api.darksky.net/forecast/cbbd7ef6d4a32d1afa75ace009b3393d/${this.props.coordinateStore.lat},${this.props.coordinateStore.lng}`)
-            .then((response) => {
-               console.log(response);
-               this.setState({
-                  uvIndex: response.data.currently.uvIndex
-               });
-               console.log(this.state.uvIndex);
-            })
-      
+      await this.props.dispatch({ type: 'GET_DISPLAY_LOCATIONS' });
+      console.log('**********', this.props.displayLocation.city);
+      await this.props.dispatch({ type: 'FETCH_COORDINATES' });
+      console.log('&&&&&&&&&&&', this.props.userLocations);
+      axios(`https://api.darksky.net/forecast/cbbd7ef6d4a32d1afa75ace009b3393d/${this.props.coordinateStore.lat},${this.props.coordinateStore.lng}`)
+         .then((response) => {
+            console.log(response);
+            this.setState({
+               uvIndex: response.data.currently.uvIndex
+            });
+            console.log(this.state.uvIndex);
+         })
+
    };
 
    componentDidUpdate() {
@@ -71,10 +61,13 @@ class UserPage extends Component {
       };
    };
 
-   logout = () => {
-      this.props.dispatch(triggerLogout());
-      // this.props.history.push('home');
-   };
+   getHistory = (event) => {
+      this.props.dispatch({
+         type: 'GRAPH_CALL',
+         payload: this.state
+      })
+   }
+
 
    handleChangeFor = propertyName => (event) => {
       this.setState({
@@ -82,6 +75,12 @@ class UserPage extends Component {
          [propertyName]: event.target.value,
       })
    }
+
+   logout = () => {
+      this.props.dispatch(triggerLogout());
+      // this.props.history.push('home');
+   };
+
 
    submitDelete = (event) => {
       this.props.dispatch({
@@ -100,6 +99,8 @@ class UserPage extends Component {
    }
 
    submitNewLocation = (event) => {
+      console.log('clicked');
+      
       this.props.dispatch({
          type: 'SUBMIT_NEW_LOCATION',
          payload: this.state
@@ -109,6 +110,7 @@ class UserPage extends Component {
    render() {
       console.log(this.props.userLocations.city);
       console.log(this.state);
+      console.log('graphstore', this.props.graphStore);
 
       let content = null;
 
@@ -131,13 +133,11 @@ class UserPage extends Component {
                <div className="cardDiv">
                   <h1>UV Index</h1>
                   <h1 className="indexNumber">{this.state.uvIndex}</h1>
-                  {/* {locationDisplay} */}
                   <h1>{this.props.displayLocation.city[0].toUpperCase() + this.props.displayLocation.city.slice(1)},&nbsp;{this.props.displayLocation.state}</h1>
                   <h2>{moment().format("dddd - MMMM Do, YYYY, h:mm a")}</h2>
-                  {/* <h1 >Minneapolis, MN</h1> */}
-                  {/* <button onClick={this.openEditLocationModal}>Add&nbsp;/&nbsp;Edit Location(s)</button> */}
-                  <SimpleModalLauncher buttonLabel="Locations">
-                     <form className="editModal" >
+
+                  <SimpleModalLauncher buttonLabel="Locations" >
+                     <form className="form" >
                         <div className="locationModal">
                            <h3>Add A Location</h3>
                            <div>
@@ -149,10 +149,8 @@ class UserPage extends Component {
                            <div>
                               <label htmlFor="State">
                                  State:
-                                    {/* <States onChange={this.handleChangeFor('newState')} /> */}
                                  <select type="select"
                                     name="State"
-                                    // value={this.state.State}
                                     onChange={this.handleChangeFor('newState')}>
                                     <option value="Alabama">AL</option>
                                     <option value="Alaska">AK</option>
@@ -214,7 +212,7 @@ class UserPage extends Component {
                               </label>
                            </div>
                            <div>
-                              <input type="submit" value="submit" onSubmit={this.submitNewLocation} />
+                              <input type="submit" value="submit" onClick={this.submitNewLocation} />
                            </div>
                            <div>
                               <label htmlFor="delete">
@@ -237,7 +235,28 @@ class UserPage extends Component {
                         </div >
                      </form>
                   </SimpleModalLauncher>
-                  <button >History Graph</button>
+                  <form id="historyGraph" onSubmit={this.getHistory}>
+                     <SimpleModalLauncher buttonLabel="History Graph" >
+                        <div className="historyCard">
+                           <VictoryChart
+                              theme={VictoryTheme.material}
+                              maxDomain={{ y: 12 }}
+                              minDomain={{ y: 0 }}
+                           >
+                              <VictoryLine
+                                 style={{
+                                    data: { stroke: "#c43a31" },
+                                    parent: { border: "1px solid #ccc" }
+                                 }}
+                                 data={this.props.graphStore.data}
+                                 x="date"
+                                 y="UV Index"
+                              />
+                           </VictoryChart>
+                        </div>
+                     </SimpleModalLauncher>
+                  </form>
+                  {/* <button onClick={this.getHistory}>History Graph</button> */}
                   <button ><Link to="/info">What is UV?</Link></button>
                   <br />
                   <br />

@@ -5,14 +5,11 @@ import login from './loginReducer';
 const userLocations = (state = [], action) => {
    switch (action.type) {
       case 'GET_DATA':
-         console.log(action.payload);
+         console.log('()()()()()', action.payload);
          return action.payload;
       case 'CREATE_NEW_USER_LOCATION':
-         console.log(action.payload);
+         console.log('VVVVVVVV', action.payload);
          return action.payload;
-
-      // case 'FETCH_COORDINATES':
-      //    return action.payload;
       default:
          return state;
    }
@@ -31,8 +28,17 @@ const displayLocation = (state = [], action) => {
 const coordinateStore = (state = {}, action) => {
    switch (action.type) {
       case 'STORING_COORDINATES':
-      console.log('+++++++', action.payload);
-      
+         console.log('+++++++', action.payload);
+
+         return action.payload;
+      default:
+         return state;
+   }
+}
+
+const graphStore = (state = [], action) => {
+   switch (action.type) {
+      case 'GRAPH_DATA':
          return action.payload;
       default:
          return state;
@@ -44,7 +50,8 @@ const store = combineReducers({
    login,
    userLocations,
    displayLocation,
-   coordinateStore
+   coordinateStore,
+   graphStore
 });
 
 

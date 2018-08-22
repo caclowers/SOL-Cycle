@@ -1,12 +1,14 @@
-import { put as dispatch, call, takeEvery , all } from 'redux-saga/effects';
+import { put as dispatch, call, takeEvery, all } from 'redux-saga/effects';
 import userSaga from './userSaga';
 import loginSaga from './loginSaga';
 import axios from '../../../node_modules/axios';
 
 
+
+
 function* deleteSaga(action) {
    console.log('got to deleteSaga');
-   try{
+   try {
       yield call(axios.delete, `/api/locations/${action.payload.id}`)
       yield dispatch({
          type: 'DELETE_LOCATION',
@@ -17,9 +19,12 @@ function* deleteSaga(action) {
    }
 }
 
+
+
+
 function* editSaga(action) {
    try {
-      console.log('HERE',action.payload);
+      console.log('HERE', action.payload);
       yield call(axios.put, `/api/locations/${action.payload}`, action.payload)
       yield dispatch({
          type: 'FETCH_COORDINATES'
@@ -31,57 +36,84 @@ function* editSaga(action) {
 
 
 
+
 function* getDataSaga(action) {
-   try{
+   try {
       const userInfo = yield call(axios.get, `/api/locations`)
       yield dispatch({
          type: 'GET_DATA',
          payload: userInfo.data
       })
-   } catch(error){
+   } catch (error) {
       console.log('error in getDataSaga:', error);
    }
 }
 
+
+
+
 function* getDisplayLocationsSaga(action) {
-   try{
+   try {
       const userInfo = yield call(axios.get, `/api/locations/specific`)
       yield dispatch({
          type: 'SHOW_LOCATION',
          payload: userInfo.data
       })
       const locationCoordinates = yield axios(`https://maps.googleapis.com/maps/api/geocode/json?address=${userInfo.data.city},+${userInfo.data.state}&key=AIzaSyDnjD2cYoMBqVyqqe4BtBugAQRNiXn7OTY`)
-            // .then((response) => {
-            //    console.log(response);
-               
-            //    // this.setState({
-            //    //    lat: response.data.results[0].geometry.location.lat,
-            //    //    long: response.data.results[0].geometry.location.lng
-            //    // });
-            //    console.log(this.state.lat);
-            //    console.log(this.state.long);
-            // })
-            yield dispatch({
-               type: 'STORING_COORDINATES',
-               payload: locationCoordinates.data.results[0].geometry.location
-            })
-   } catch(error){
+      yield dispatch({
+         type: 'STORING_COORDINATES',
+         payload: locationCoordinates.data.results[0].geometry.location
+      })
+   } catch (error) {
       console.log('error in getDataSaga:', error);
    }
 }
 
+
+
+
+function* graphDataSaga(action) {
+   try {
+      const userInfo = yield call(axios.get, `/api/locations/specific`)
+      yield dispatch({
+         type: 'SHOW_LOCATION',
+         payload: userInfo.data
+      })
+      const locationCoordinates = yield axios(`https://maps.googleapis.com/maps/api/geocode/json?address=${userInfo.data.city},+${userInfo.data.state}&key=AIzaSyDnjD2cYoMBqVyqqe4BtBugAQRNiXn7OTY`)
+      yield dispatch({
+         type: 'STORING_COORDINATES',
+         payload: locationCoordinates.data.results[0].geometry.location
+      })
+      console.log('>>>>>>>', locationCoordinates);
+      const graphData = yield axios(`https://api.darksky.net/forecast/cbbd7ef6d4a32d1afa75ace009b3393d/${locationCoordinates.lat},${locationCoordinates.lng}`)
+
+      yield dispatch({
+         type: 'GRAPH_DATA',
+         payload: graphData.daily.data
+      })
+   } catch (error) {
+      console.log('error in graphDataSaga:', error);
+
+   }
+}
+
+
+
+
 function* newLocationSaga(action) {
-   try{
+   try {
       yield call(axios.post, `/api/locations`, action.payload)
       yield dispatch({
          type: 'CREATE_NEW_USER_LOCATION',
          payload: action.payload
       })
-   } catch(error) {
+   } catch (error) {
       console.log('error in newLocationSaga:', error);
-      
+
    }
 }
+
+
 
 
 export default function* rootSaga() {
@@ -90,7 +122,8 @@ export default function* rootSaga() {
    yield takeEvery('SUBMIT_DELETE', deleteSaga)
    yield takeEvery('SUBMIT_EDIT', editSaga)
    yield takeEvery('SUBMIT_NEW_LOCATION', newLocationSaga)
-   
+   yield takeEvery('GRAPH_CALL', graphDataSaga)
+
 
    yield all([
       userSaga(),

@@ -9,7 +9,7 @@ import axios from '../../../node_modules/axios';
 function* deleteSaga(action) {
    console.log('got to deleteSaga');
    try {
-      yield call(axios.delete, `/api/locations/${action.payload.id}`)
+      yield call(axios.delete, `/api/locations/${action.payload}`)
       yield dispatch({
          type: 'DELETE_LOCATION',
          payload: this.state.id
@@ -24,10 +24,10 @@ function* deleteSaga(action) {
 
 function* editSaga(action) {
    try {
-      console.log('HERE', action.payload);
-      yield call(axios.put, `/api/locations/${action.payload}`, action.payload)
+      yield call(axios.get, `/api/locations/${action.payload}`)
       yield dispatch({
-         type: 'FETCH_COORDINATES'
+         type: 'SHOW_LOCATION',
+         payload: action.payload
       })
    } catch (error) {
       console.log('error in editSaga:', error);
@@ -59,6 +59,8 @@ function* getDisplayLocationsSaga(action) {
          type: 'SHOW_LOCATION',
          payload: userInfo.data
       })
+      console.log('userInfo', userInfo);
+      
       const locationCoordinates = yield axios(`https://maps.googleapis.com/maps/api/geocode/json?address=${userInfo.data.city},+${userInfo.data.state}&key=AIzaSyDnjD2cYoMBqVyqqe4BtBugAQRNiXn7OTY`)
       yield dispatch({
          type: 'STORING_COORDINATES',
@@ -106,6 +108,10 @@ function* newLocationSaga(action) {
       yield dispatch({
          type: 'CREATE_NEW_USER_LOCATION',
          payload: action.payload
+      })
+      yield dispatch({
+         type: 'GET_DISPLAY_LOCATIONS',
+
       })
    } catch (error) {
       console.log('error in newLocationSaga:', error);

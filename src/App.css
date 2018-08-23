@@ -3,11 +3,11 @@ button{
    border: 2px solid #FDCE38;
    box-shadow: 0 0 25px #FDCE38, inset 0 0 25px #FDCE38;
    color: #052F5F;
-   /* float: left; */
    font-size: 1.5em;
    height: 45px;
    margin: 15px;
    padding: 0;
+   text-decoration: underline;
    text-shadow: 0 0 5px #FDCE38;
    transition: 1s;
    -webkit-text-stroke-color: #FDCE38;
@@ -18,7 +18,7 @@ button{
 button:hover {
    box-shadow: 0 0 55px #FDCE38, inset 0 0 65px #FDCE38;;
    color: #FDCE38;
-   text-decoration: underline;
+   /* text-decoration: underline; */
 }
 
 button a{
@@ -114,14 +114,15 @@ ul {
 }
 
 .cardDiv{
-    border:5px solid #FDCE38;
-    box-shadow: 0 0 25px #FDCE38, inset 0 0 25px #FDCE38;
-    
-    height: auto;
-    margin-top: 12px;
-    margin-left: 12.5%;
-    position: absolute;
-    width: 75%;
+   animation: fadein 1.25s;
+   border:5px solid #FDCE38;
+   box-shadow: 0 0 25px #FDCE38, inset 0 0 25px #FDCE38;
+
+   height: auto;
+   margin-top: 12px;
+   margin-left: 12.5%;
+   position: absolute;
+   width: 75%;
 }
 
 .h2ToCenter{
@@ -136,6 +137,7 @@ ul {
 }
 
 .infoDiv{
+   animation: fadein 1.25s;
    border: 5px solid #FDCE38;
    box-shadow: 0 0 25px #FDCE38, inset 0 0 25px #FDCE38;
    color: #FDCE38;
@@ -155,3 +157,7 @@ ul {
    to { transform: rotate(360deg); }
 }
  
+@keyframes fadein {
+   from { opacity: 0; }
+   to   { opacity: 1; }
+}

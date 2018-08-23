@@ -6,7 +6,7 @@ body {
 }
 
 .form {
-   animation: fadein 3s;
+   animation: fadein 1.25s;
    background-color: #FDCE38;
    border-radius: 175px;
    box-shadow:0 0 100px #FDCE38;
@@ -90,6 +90,8 @@ ul {
 
 /* ============================================================== */
 
+
+
 .editModal{
 margin: 0 auto;
 }
@@ -100,7 +102,9 @@ margin: 0 auto;
 }
 
 .historyCard{
-   animation: fadein 3s;
+   animation: fadein 1.25s;
+   display: flex;
+   justify-content: center;
 }
 
 .instructions h1 {

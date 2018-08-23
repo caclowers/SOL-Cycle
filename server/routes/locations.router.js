@@ -9,7 +9,9 @@ router.get('/', (req, res) => {
    console.log('id', req.user.id);
 
    const user_id = req.user.id
-   const queryText = `SELECT * FROM "locations" JOIN "user" ON "locations"."user_id" = "user"."id" WHERE "user"."id" = $1;`;
+   const queryText = `SELECT * FROM "locations" 
+                        JOIN "user" ON "locations"."user_id" = "user"."id" WHERE "user"."id" = $1 
+                        ORDER BY "locations"."id" DESC;`;
    pool.query(queryText, [user_id]).then((results) => {
       console.log('GET results row 14', results.rows);
       res.send(results.rows)
@@ -22,7 +24,9 @@ router.get('/specific', (req, res) => {
    console.log('id', req.user.id);
 
    const user_id = req.user.id
-   const queryText = `SELECT * FROM "locations" JOIN "user" ON "locations"."user_id" = "user"."id" WHERE "user"."id" = $1;`;
+   const queryText = `SELECT * FROM "locations" 
+                        JOIN "user" ON "locations"."user_id" = "user"."id" WHERE "user"."id" = $1 
+                        ORDER BY "locations"."id" DESC;`;
    pool.query(queryText, [user_id]).then((results) => {
       console.log('GET results row 27', results.rows[0]);
       res.send(results.rows[0])
@@ -89,7 +93,7 @@ router.put('/:id', (req, res) => {
 
 
 router.delete('/:id', (req, res) => {
-   const user_id = req.user.id
+   const user_id = req.body
    const queryText = 'DELETE FROM "locations" WHERE "user_id" = $1 AND "id" = $2;';
    pool.query(queryText, [user_id, req.body.id])
       .then(() => {

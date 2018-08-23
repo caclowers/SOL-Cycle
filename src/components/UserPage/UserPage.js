@@ -4,13 +4,20 @@ import { Link } from 'react-router-dom';
 // import EditLocationModal from './EditLocationModal.js'
 import axios from 'axios';
 import SimpleModalLauncher from '../SimpleModalLauncher/SimpleModalLauncher';
-import States from '../States/States.js';
+// import States from '../States/States.js';
 import moment from 'moment';
 // import Nav from '../../components/Nav/Nav';
-import { USER_ACTIONS } from '../../redux/actions/userActions';
+// import { USER_ACTIONS } from '../../redux/actions/userActions';
 import { triggerLogout } from '../../redux/actions/loginActions';
-import * as V from 'victory';
-import { VictoryChart, VictoryTheme, VictoryLine } from 'victory';
+// import * as V from 'victory';
+// import { VictoryChart, VictoryTheme, VictoryLine, VictoryAxis, VictoryLabel } from 'victory';
+import {
+   XAxis, YAxis, CartesianGrid, Area, AreaChart, Tooltip,
+   ResponsiveContainer
+} from 'recharts';
+import { LineChart, Line } from 'recharts';
+
+
 
 
 const mapStateToProps = state => ({
@@ -29,8 +36,10 @@ class UserPage extends Component {
          uvIndex: '',
          city: this.props.userLocations.city,
          State: this.props.userLocations.State,
+         switchedLocation: '',
          newCity: '',
          newState: '',
+         graphData: [],
          lat: '',
          long: '',
       };
@@ -62,10 +71,13 @@ class UserPage extends Component {
    };
 
    getHistory = (event) => {
-      this.props.dispatch({
-         type: 'GRAPH_CALL',
-         payload: this.state
-      })
+      axios(`https://api.darksky.net/forecast/cbbd7ef6d4a32d1afa75ace009b3393d/${this.props.coordinateStore.lat},${this.props.coordinateStore.lng}`)
+         .then((response) => {
+            console.log(response);
+            this.setState({
+               graphData: response.data.daily.data
+            });
+         })
    }
 
 
@@ -85,7 +97,7 @@ class UserPage extends Component {
    submitDelete = (event) => {
       this.props.dispatch({
          type: 'SUBMIT_DELETE',
-         payload: this.props.user.id
+         payload: this.state.userID
       })
    }
 
@@ -100,7 +112,7 @@ class UserPage extends Component {
 
    submitNewLocation = (event) => {
       console.log('clicked');
-      
+
       this.props.dispatch({
          type: 'SUBMIT_NEW_LOCATION',
          payload: this.state
@@ -109,16 +121,27 @@ class UserPage extends Component {
 
    render() {
       console.log(this.props.userLocations.city);
-      console.log(this.state);
+      console.log(this.state.graphData);
+      console.log('WMWMWMWMWM', this.props.coordinateStore);
+
       console.log('graphstore', this.props.graphStore);
 
       let content = null;
 
       let locationArray = this.props.userLocations.map((location, index) => {
          return (
-            <option value={location.id}>{location.city[0].toUpperCase() + location.city.slice(1)},&nbsp;{location.state}</option>
+            <option value={location.city}>{location.city[0].toUpperCase() + location.city.slice(1)},&nbsp;{location.state}</option>
          );
       })
+      console.log(locationArray);
+
+      let graphArrayData = this.state.graphData.map((graphItem, index) => {
+         
+         return (
+            { index: moment.unix(graphItem.time).format("MMM D"), uvIndex: graphItem.uvIndex }
+         )
+      })
+      console.log('graphDataArray', graphArrayData);
 
       // let locationDisplay = this.props.userLocations.map((location, index) => {
       //    return (
@@ -135,7 +158,7 @@ class UserPage extends Component {
                   <h1 className="indexNumber">{this.state.uvIndex}</h1>
                   <h1>{this.props.displayLocation.city[0].toUpperCase() + this.props.displayLocation.city.slice(1)},&nbsp;{this.props.displayLocation.state}</h1>
                   <h2>{moment().format("dddd - MMMM Do, YYYY, h:mm a")}</h2>
-
+               <div className="buttonDiv">
                   <SimpleModalLauncher buttonLabel="Locations" >
                      <form className="form" >
                         <div className="locationModal">
@@ -217,10 +240,10 @@ class UserPage extends Component {
                            <div>
                               <label htmlFor="delete">
                                  <h3>Change Current Location</h3>
-                                 <select type="select" name="Locations">{locationArray}</select>
+                                 <select type="select" name="Locations" onChange={this.handleChangeFor('switchedLocation')}>{locationArray}</select>
                               </label>
                               <div>
-                                 <input type="submit" value="Switch" onSubmit={this.submitEdit} />
+                                 <input type="submit" value="Switch" onClick={this.submitEdit} />
                               </div>
                            </div>
                            <div>
@@ -229,16 +252,16 @@ class UserPage extends Component {
                                  <select type="select" name="Locations">{locationArray}</select>
                               </label>
                               <div>
-                                 <input type="submit" value="Delete" onSubmit={this.submitDelete} />
+                                 <input type="submit" value="Delete" onClick={this.submitDelete} />
                               </div>
                            </div>
                         </div >
                      </form>
                   </SimpleModalLauncher>
-                  <form id="historyGraph" onSubmit={this.getHistory}>
-                     <SimpleModalLauncher buttonLabel="History Graph" >
+                  <form id="historyGraph" onClick={this.getHistory}>
+                     <SimpleModalLauncher buttonLabel="6 Day Forecast" >
                         <div className="historyCard">
-                           <VictoryChart
+                           {/* <VictoryChart
                               theme={VictoryTheme.material}
                               maxDomain={{ y: 12 }}
                               minDomain={{ y: 0 }}
@@ -248,16 +271,46 @@ class UserPage extends Component {
                                     data: { stroke: "#c43a31" },
                                     parent: { border: "1px solid #ccc" }
                                  }}
-                                 data={this.props.graphStore.data}
-                                 x="date"
-                                 y="UV Index"
+                                 data={graphArrayData}
+                                 x="index"
+                                 y="uvIndex"
                               />
-                           </VictoryChart>
+                              <VictoryAxis
+
+                                 // tickValues specifies both the number of ticks and where
+                                 // they are placed on the axis
+                                 tickValues={[1, 2, 3, 4, 5, 6, 7, 8]}
+                                 tickFormat={[
+                                 moment().subtract(8, 'days').format("MMM Do"),
+                                 moment().subtract(7, 'days').format("MMM Do"),
+                                 moment().subtract(6, 'days').format("MMM Do"),
+                                 moment().subtract(5, 'days').format("MMM Do"),
+                                 moment().subtract(4, 'days').format("MMM Do"),
+                                 moment().subtract(3, 'days').format("MMM Do"),
+                                 moment().subtract(2, 'days').format("MMM Do"),
+                                 moment().subtract(1, 'days').format("MMM Do"),
+                                 moment().subtract(0, 'days').format("MMM Do")]}
+                              />}
+                              <VictoryAxis
+                                 dependentAxis
+                                 // tickFormat specifies how ticks should be displayed
+                                 tickFormat={["1", "2", "3", "4", "5", "6", "7", "8", "9", "10", "11", "12"]}
+                              />
+                           </VictoryChart> */}
+                           <LineChart  width={700} height={500} data={graphArrayData}
+                           margin={{ top: 45, right: 80, left: 20, bottom: 95 }}>
+                              <CartesianGrid stroke="#052F5F" strokeWidth={5} strokeDasharray="8 8" />
+                              <XAxis stroke="#FDCE38" label={{ fontSize: 36, stroke: "#FDCE38", value: 'DATE', offset: -40, position: 'insideBottom' }} dataKey="index" />
+                              <YAxis stroke="#FDCE38" domain={[0, 12]} label={{ fontSize: 36, stroke: "#FDCE38",  value: 'UV INDEX', angle: -90, position: 'Left', dx: -30}} dataKey="uvIndex"/>
+                              <Line type="monotone" dataKey="uvIndex" stroke="#FDCE38" />
+                              <Tooltip />
+                           </LineChart>
                         </div>
                      </SimpleModalLauncher>
                   </form>
                   {/* <button onClick={this.getHistory}>History Graph</button> */}
                   <button ><Link to="/info">What is UV?</Link></button>
+                  </div>
                   <br />
                   <br />
                   <div>

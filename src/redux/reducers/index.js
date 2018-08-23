@@ -18,7 +18,7 @@ const userLocations = (state = [], action) => {
 const displayLocation = (state = [], action) => {
    switch (action.type) {
       case 'SHOW_LOCATION':
-         console.log(action.payload);
+         console.log('IIIIIII', action.payload);
          return action.payload;
       default:
          return state;
@@ -39,6 +39,7 @@ const coordinateStore = (state = {}, action) => {
 const graphStore = (state = [], action) => {
    switch (action.type) {
       case 'GRAPH_DATA':
+      console.log('-_-_-_-', action.payload);
          return action.payload;
       default:
          return state;

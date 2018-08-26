@@ -20,6 +20,8 @@ const displayLocation = (state = [], action) => {
       case 'SHOW_LOCATION':
          console.log('IIIIIII', action.payload);
          return action.payload;
+      case 'SWITCH_LOCATION':
+         return action.payload;
       default:
          return state;
    }
@@ -39,12 +41,21 @@ const coordinateStore = (state = {}, action) => {
 const graphStore = (state = [], action) => {
    switch (action.type) {
       case 'GRAPH_DATA':
-      console.log('-_-_-_-', action.payload);
+         console.log('-_-_-_-', action.payload);
          return action.payload;
       default:
          return state;
    }
 }
+
+// const switchedLocation = (state = '', action) => {
+//    switch (action.type) {
+//       case 'SWITCH_LOCATION':
+//          return action.payload;
+//       default:
+//          return state;
+//    }
+// }
 
 const store = combineReducers({
    user,
@@ -52,7 +63,8 @@ const store = combineReducers({
    userLocations,
    displayLocation,
    coordinateStore,
-   graphStore
+   graphStore,
+   // switchedLocation
 });
 
 

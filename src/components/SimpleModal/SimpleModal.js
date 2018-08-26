@@ -47,7 +47,7 @@ class SimpleModal extends Component {
 
   render () {
     const {
-      onCloseRequest,
+      // onCloseRequest,
       children
     } = this.props;
     

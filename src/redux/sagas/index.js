@@ -9,7 +9,7 @@ import axios from '../../../node_modules/axios';
 function* deleteSaga(action) {
    console.log('got to deleteSaga');
    try {
-      yield call(axios.delete, `/api/locations/${action.payload}`)
+      yield call(axios.delete, `/api/locations/${action.payload.id}`, action.payload)
       yield dispatch({
          type: 'DELETE_LOCATION',
          payload: this.state.id
@@ -24,9 +24,14 @@ function* deleteSaga(action) {
 
 function* editSaga(action) {
    try {
-      yield call(axios.get, `/api/locations/${action.payload}`)
+      
+      // yield call(axios.get, `/api/locations/${action.payload}`)
       yield dispatch({
-         type: 'SHOW_LOCATION',
+         type: 'SWITCH_LOCATION',
+         payload: action.payload
+      })
+      yield dispatch({
+         type: 'GET_DISPLAY_LOCATIONS',
          payload: action.payload
       })
    } catch (error) {
@@ -112,6 +117,11 @@ function* newLocationSaga(action) {
       yield dispatch({
          type: 'GET_DISPLAY_LOCATIONS',
 
+      })
+      const userInfo = yield call(axios.get, `/api/locations/specific`)
+      yield dispatch({
+         type: 'SHOW_LOCATION',
+         payload: userInfo.data
       })
    } catch (error) {
       console.log('error in newLocationSaga:', error);

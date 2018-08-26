@@ -1,5 +1,5 @@
 import React from 'react';
-import logo from './sun.png';
+import logo from './sun-copy.png';
 import '../../App.css';
 
 

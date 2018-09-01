@@ -5,7 +5,7 @@ import login from './loginReducer';
 const userLocations = (state = [], action) => {
    switch (action.type) {
       case 'GET_DATA':
-         console.log('()()()()()', action.payload);
+         // console.log('()()()()()', action.payload);
          return action.payload;
       case 'CREATE_NEW_USER_LOCATION':
          console.log('VVVVVVVV', action.payload);
@@ -18,7 +18,7 @@ const userLocations = (state = [], action) => {
 const displayLocation = (state = [], action) => {
    switch (action.type) {
       case 'SHOW_LOCATION':
-         console.log('IIIIIII', action.payload);
+         // console.log('IIIIIII', action.payload);
          return action.payload;
       case 'SWITCH_LOCATION':
          return action.payload;
@@ -30,7 +30,7 @@ const displayLocation = (state = [], action) => {
 const coordinateStore = (state = {}, action) => {
    switch (action.type) {
       case 'STORING_COORDINATES':
-         console.log('+++++++', action.payload);
+         // console.log('+++++++', action.payload);
 
          return action.payload;
       default:
@@ -41,7 +41,7 @@ const coordinateStore = (state = {}, action) => {
 const graphStore = (state = [], action) => {
    switch (action.type) {
       case 'GRAPH_DATA':
-         console.log('-_-_-_-', action.payload);
+         // console.log('-_-_-_-', action.payload);
          return action.payload;
       default:
          return state;

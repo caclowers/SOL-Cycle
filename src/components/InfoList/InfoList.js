@@ -6,12 +6,11 @@ class InfoList extends Component {
 
    render() {
       return (
-         <h3 >
-            The UV Index scale used in the United States conforms with international guidelines<br />
-            for UVI reporting established by the World Health Organization (WHO).
-            <br />
-            <br />
-            <h2 className="h2ToCenter">0 to 2: Low</h2>
+         <h2 >
+            <div className="sectionHeader">
+               <h2 className="h2ToCenter">0 to 2: Low</h2>
+            </div>
+
             A UV Index reading of 0 to 2 means LOW RISK for the average person.
             < br />
             <br />
@@ -33,7 +32,10 @@ class InfoList extends Component {
             <br />
             <br />
             <br />
-            <h2 className="h2ToCenter">3 to 5: Moderate</h2>
+            <div className="sectionHeader">
+               <h2 className="h2ToCenter">3 to 5: Moderate</h2>
+            </div>
+
             A UV Index reading of 3 to 5 means MODERATE RISK of harm from unprotected sun exposure.
             < br />
             < br />
@@ -62,7 +64,10 @@ class InfoList extends Component {
             <br />
             <br />
             <br />
-            <h2 className="h2ToCenter">6 to 7: High</h2>
+            <div className="sectionHeader">
+               <h2 className="h2ToCenter">6 to 7: High</h2>
+            </div>
+
             A UV Index reading of 6 to 7 means HIGH RISK of harm from unprotected sun exposure.< br />
             Protection against skin and eye damage is needed.< br />
             <br />
@@ -75,6 +80,7 @@ class InfoList extends Component {
                <li>
                   If outdoors, seek shade and wear protective clothing, a wide-brimmed hat, and UV-blocking sunglasses.
                </li>
+               <br />
                <br />
                <br />
                <li>
@@ -90,7 +96,10 @@ class InfoList extends Component {
             <br />
             <br />
             <br />
-            <h2 className="h2ToCenter">8 to 10: Very High</h2>
+            <div className="sectionHeader">
+               <h2 className="h2ToCenter">8 to 10: Very High</h2>
+            </div>
+
             A UV Index reading of 8 to 10 means VERY HIGH RISK of harm from unprotected sun exposure.< br />
             Take extra precautions because unprotected skin and eyes will be damaged and can burn quickly.< br />
             <br />
@@ -103,6 +112,7 @@ class InfoList extends Component {
                <li>
                   If outdoors, seek shade and wear protective clothing, a wide-brimmed hat, and UV-blocking sunglasses.
                </li>
+               <br />
                <br />
                <br />
                <li>
@@ -118,7 +128,10 @@ class InfoList extends Component {
             <br />
             <br />
             <br />
-            <h2 className="h2ToCenter">11 or more: EXTREME</h2>
+            <div className="sectionHeader">
+               <h2 className="h2ToCenter">11 or more: EXTREME</h2>
+            </div>
+
             A UV Index reading of 11 or more means EXTREME RISK of harm from unprotected sun exposure.< br />
             Take all precautions because unprotected skin and eyes can burn in minutes.< br />
             <br />
@@ -131,6 +144,7 @@ class InfoList extends Component {
                <li>
                   If outdoors, seek shade and wear protective clothing, a wide-brimmed hat, and UV-blocking sunglasses.
                </li>
+               <br />
                <br />
                <br />
                <li>
@@ -157,8 +171,8 @@ class InfoList extends Component {
                   If your shadow is TALLER than you are (in the early morning and late afternoon), your UV exposure is likely to be lower.
                </li>
                <br />
-            <br />
-            <br />
+               <br />
+               <br />
                <li>
                   If your shadow is SHORTER than you are (around midday), you are being exposed to higher levels of UV radiation. Seek shade and protect your skin and eyes.
                </li>
@@ -167,7 +181,7 @@ class InfoList extends Component {
             <br />
             Information Provided by: <a href="https://www.epa.gov/sunsafety/uv-index-scale-1">epa.gov</a>
             <button id="infoHome"><Link to="/user">Back to Home</Link></button>
-         </h3>
+         </h2>
       )
    }
 };

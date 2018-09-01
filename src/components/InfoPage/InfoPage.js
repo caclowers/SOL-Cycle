@@ -22,24 +22,30 @@ class InfoPage extends Component {
       }
    }
 
+   shadowRule = () => {
+      window.scrollTo({
+         top: 1000000,
+         behavior: "smooth"
+      });
+   }
+
    render() {
       let content = null;
 
       if (this.props.user.userName) {
          content = (
             <div>
-               <main id="welcome">Hi,<br/> {this.props.user.userName}!</main>
-            <div className="infoDiv">
-            
-               <div id="infoHeader">
-                  <h1>What is UV?</h1>
-                  <button id="infoHome"><Link to="/user">Back to Home</Link></button>
+               <main id="welcome">Hi,<br /> {this.props.user.userName}!</main>
+               <div className="infoDiv">
+
+                  <div id="infoHeader">
+                     <h1>What is UV?</h1>
+                     <button id="infoHome"><Link to="/user">Back to Home</Link></button>
+                  </div>
+                 <br/>
+                  <button id="shadowLink" onClick={this.shadowRule}>THE SHADOW RULE</button>
+                  <InfoList />
                </div>
-               <br/>
-               <br/>
-               <br/>
-               <InfoList />
-            </div>
             </div>
          );
       }

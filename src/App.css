@@ -1,6 +1,6 @@
 button{
    background-color: #090446;
-   border: 2px solid #FDCE38;
+   border: 5px solid #FDCE38;
    box-shadow: 0 0 25px #FDCE38, inset 0 0 25px #FDCE38;
    color: #052F5F;
    font-size: 1.5em;
@@ -127,8 +127,8 @@ ul {
 
 .h2ToCenter{
    text-align: center;
-   border: 5px solid #FDCE38;
-   width: 300px;
+   border: 2px solid #FDCE38;
+   width: 400px;
 }
 
 .indexNumber {
@@ -150,6 +150,11 @@ ul {
    padding-right: 20px;
    position: relative;
    width: 75%;
+}
+
+.sectionHeader{
+   display: flex;
+   justify-content: center;
 }
 
  /* ============================================================ */

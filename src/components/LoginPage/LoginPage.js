@@ -62,8 +62,8 @@ class LoginPage extends Component {
   }
 
   render() {
-     console.log(this.props.login);
-       console.log(this.props.user);
+   //   console.log(this.props.login);
+   //     console.log(this.props.user);
     return (
        
        

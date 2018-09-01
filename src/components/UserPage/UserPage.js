@@ -43,9 +43,9 @@ class UserPage extends Component {
       window.scrollTo(0, 0);
 
       await this.props.dispatch({ type: 'GET_DISPLAY_LOCATIONS' });
-      console.log('**********', this.state);
+      // console.log('**********', this.state);
       await this.props.dispatch({ type: 'FETCH_COORDINATES' });
-      console.log('&&&&&&&&&&&', this.props.userLocations);
+      // console.log('&&&&&&&&&&&', this.props.userLocations);
       axios(`https://api.darksky.net/forecast/cbbd7ef6d4a32d1afa75ace009b3393d/${this.props.coordinateStore.lat},${this.props.coordinateStore.lng}`)
          .then((response) => {
             console.log(response);
@@ -135,11 +135,11 @@ class UserPage extends Component {
             <option value={`${location.city}, ${location.state}`}>{location.city[0].toUpperCase() + location.city.slice(1)},&nbsp;{location.state}</option>
          );
       })
-      console.log(locationArray);
+      // console.log(locationArray);
 
       let graphArrayData = this.state.graphData.map((graphItem, index) => {
          return (
-            { index: moment.unix(graphItem.time).format("MMM D"), uvIndex: graphItem.uvIndex }
+            { index: moment.unix(graphItem.time).format("ddd MMM D"), uvIndex: graphItem.uvIndex }
          )
       })
 
@@ -262,7 +262,7 @@ class UserPage extends Component {
                      <form id="historyGraph" onClick={this.getHistory}>
                         <SimpleModalLauncher buttonLabel="7 Day Forecast" >
                            <div className="historyCard">
-                              <LineChart width={700} height={500} data={graphArrayData}
+                              <LineChart width={900} height={500} data={graphArrayData}
                                  margin={{ top: 45, right: 80, left: 20, bottom: 95 }}>
                                  <CartesianGrid stroke="#052F5F" strokeWidth={5} strokeDasharray="8 8" />
                                  <XAxis stroke="#FDCE38" label={{ fontSize: 36, stroke: "#FDCE38", value: 'DATE', offset: -40, position: 'insideBottom' }} dataKey="index" />

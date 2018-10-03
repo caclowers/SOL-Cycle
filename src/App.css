@@ -134,8 +134,8 @@ ul {
 
 .h2ToCenter{
    text-align: center;
-   border: 2px solid #FDCE38;
-   width: 400px;
+   border: 5px solid #FDCE38;
+   width: 300px;
 }
 
 .indexNumber {
@@ -160,6 +160,19 @@ ul {
    padding-right: 20px;
    position: relative;
    width: 75%;
+}
+
+.infoSection{
+  align-items: center;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  margin: 0;
+  width: 65%;
+}
+
+.infoSection h3{
+  margin: 0;
 }
 
 .sectionHeader{

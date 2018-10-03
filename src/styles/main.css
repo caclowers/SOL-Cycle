@@ -1,5 +1,6 @@
 body {
    color:#052F5F;
+   /* display: flex; */
    font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
     -webkit-text-stroke-color: #FDCE38;
    -webkit-text-stroke-width: 0.5px;

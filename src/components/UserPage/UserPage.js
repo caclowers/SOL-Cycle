@@ -151,7 +151,7 @@ class UserPage extends Component {
           <main id="welcome">Hi,<br /> {this.props.user.userName}!</main>
           <div className="cardDiv">
             <h1>UV Index</h1>
-            <h1 className="indexNumber">{this.state.uvIndex}</h1>
+            <h1 id="indexNumber">{this.state.uvIndex}</h1>
             <h1>{this.props.displayLocation.city[0].toUpperCase() + this.props.displayLocation.city.slice(1)},&nbsp;{this.props.displayLocation.state}</h1>
             <h2>{moment().format("dddd - MMMM Do, YYYY, h:mm a")}</h2>
             <div className="buttonDiv">

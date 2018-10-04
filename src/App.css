@@ -1,165 +1,160 @@
 button{
-   background-color: #090446;
-   border: 5px solid #FDCE38;
-   box-shadow: 0 0 25px #FDCE38, inset 0 0 25px #FDCE38;
-   color: #052F5F;
-   font-size: 1.5em;
-   height: 45px;
-   margin: 15px;
-   padding: 0;
-   text-decoration: underline;
-   text-shadow: 0 0 5px #FDCE38;
-   transition: 1s;
-   -webkit-text-stroke-color: #FDCE38;
-   -webkit-text-stroke-width: 0.5px;
-   width: 240px;
+  background-color: #090446;
+  border: 5px solid #FDCE38;
+  box-shadow: 0 0 25px #FDCE38, inset 0 0 25px #FDCE38;
+  color: #052F5F;
+  font-size: 1.5em;
+  height: 45px;
+  margin: 15px;
+  padding: 0;
+  text-decoration: underline;
+  text-shadow: 0 0 5px #FDCE38;
+  transition: 1s;
+  -webkit-text-stroke-color: #FDCE38;
+  -webkit-text-stroke-width: 0.5px;
+  width: 240px;
 } 
 
 button:hover {
-   box-shadow: 0 0 55px #FDCE38, inset 0 0 65px #FDCE38;;
-   color: #FDCE38;
-   /* text-decoration: underline; */
+  box-shadow: 0 0 55px #FDCE38, inset 0 0 65px #FDCE38;;
+  color: #FDCE38;
 }
 
 button a{
-   color: #052F5F;
-   -webkit-text-stroke-color: #FDCE38;
-   -webkit-text-stroke-width: 0.5px;
+  color: #052F5F;
+  -webkit-text-stroke-color: #FDCE38;
+  -webkit-text-stroke-width: 0.5px;
 }
 
 button a:hover {
-   color: #FDCE38;
-   text-decoration: underline;
+  color: #FDCE38;
+  text-decoration: underline;
+  transition: 1s;
 }
 
 main{
-   font-size: 2em;
+  font-size: 2em;
 }
 
 h1{
-   font-size: 3.5em;
-   margin: 0;
-   text-align: center;
-   -webkit-text-stroke-color: #FDCE38;
-   -webkit-text-stroke-width: 1px;
+  color: #052F5F;
+  font-size: 3.5em;
+  margin: 0;
+  text-align: center;
+  -webkit-text-stroke-color: #FDCE38;
+  -webkit-text-stroke-width: 1px;
 }
 
-li {
-  float: left;
-  list-style-type: disc;
-}
-
-ul {
-   list-style-type: disc;
-   margin: 0;
-   overflow: hidden;
-}
 
 /* ============================================================== */
+
+
+#indexNumber {
+  font-size: 30em;
+  margin-bottom: -100px;
+  margin-top: -100px;
+  text-shadow: 0 0 35px #FDCE38; 
+}
+
+#infoDiv{
+  animation: fadein 1.25s;
+  border: 5px solid #FDCE38;
+  box-shadow: 0 0 25px #FDCE38, inset 0 0 25px #FDCE38;
+  color: #FDCE38;
+  display: flex;
+  flex-direction: column;
+  height: auto;
+  justify-content: center;
+  list-style-type: disc;
+  margin-top: 24px;
+  margin-left: 12.5%;
+  margin-bottom: 3rem;
+  position: absolute;
+  width: 75%;
+}
 
 #infoHeader{
-   display: flex;
-
-   flex-direction: column;
-   justify-content: center;
-   align-items: center;
-}
-
-#infoHeader2{
-  display: flex;
-  justify-content: center;
   align-items: center;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  padding-left: 20px;
+  padding-right: 20px;
+  
 }
 
+#infoHeader h3{
+  display: flex;
+  margin: 0.5rem;
+}
 
 
 /* ============================================================== */
 
+
 .App {
-   text-align: center;
+  text-align: center;
 }   
 
 .App-header {
-   background-color: #052F5F;
-   height: 200px;
-   padding: 0px;
-   text-align: center;
+  background-color: #052F5F;
+  height: 200px;
+  padding: 0px;
+  text-align: center;
 }
 
 .App-intro {
-   color: #B8B8D1;
-   font-size: large;
-   margin: 0;
+  color: #B8B8D1;
+  font-size: large;
+  margin: 0;
 }
 
 .App-logo {
-   animation: App-logo-spin infinite 30s linear;
-   height: 110px;
+  animation: App-logo-spin infinite 30s linear;
+  height: 110px;
 }
  
 .App-title {
-   color: #FDCE38;
-   font-size: 200px;
-   margin: 0;
-   padding: 0;
-   text-shadow: 0 0 50px #FDCE38;
-   -webkit-text-stroke-color: #090446;
-   -webkit-text-stroke-width: 2.5px;
+  color: #FDCE38;
+  font-size: 200px;
+  margin: 0;
+  padding: 0;
+  text-shadow: 0 0 50px #FDCE38;
+  -webkit-text-stroke-color: #090446;
+  -webkit-text-stroke-width: 2.5px;
 }
 
 .bodyDiv{
-    background-color: #090446;
-    height: 1000px;
-    text-align: center;
+  background-color: #090446;
+  height: 1000px;
+  text-align: center;
 }
  
 .buttonsForSpreading{
-   display: flex;
-   justify-content: space-evenly;
-
+  display: flex;
+  justify-content: space-evenly;
 }
 
 .cardDiv{
-   animation: fadein 1.25s;
-   border:5px solid #FDCE38;
-   box-shadow: 0 0 25px #FDCE38, inset 0 0 25px #FDCE38;
-
-   height: auto;
-   margin-top: 24px;
-   margin-left: 12.5%;
-   position: absolute;
-   width: 75%;
+  animation: fadein 1.25s;
+  border:5px solid #FDCE38;
+  box-shadow: 0 0 25px #FDCE38, inset 0 0 25px #FDCE38;
+  height: auto;
+  margin-top: 24px;
+  margin-left: 12.5%;
+  position: absolute;
+  width: 75%;
 }
 
 
 .h2ToCenter{
-   text-align: center;
-   border: 5px solid #FDCE38;
-   width: 300px;
-}
-
-.indexNumber {
-    font-size: 30em;
-    margin-bottom: -100px;
-    margin-top: -100px;
-    text-shadow: 0 0 35px #FDCE38; 
-}
-
-.infoDiv{
-   animation: fadein 1.25s;
-   border: 5px solid #FDCE38;
-   box-shadow: 0 0 25px #FDCE38, inset 0 0 25px #FDCE38;
-   color: #FDCE38;
-   display: flex;
-   flex-direction: column;
-   justify-content: center;
-   list-style-type: disc;
-   margin-left: 10%;
-   margin-top: 12px;
-   padding-left: 20px;
-   padding-right: 20px;
-   position: relative;
-   width: 75%;
+  background-color: #052F5F;
+  border: 5px solid #FDCE38;
+  font-size: 2.5rem;
+  text-align: center;
+  width: 400px;
+  -webkit-text-stroke-color: #090446;
+  -webkit-text-stroke-width: 2px;
 }
 
 .infoSection{
@@ -168,26 +163,32 @@ ul {
   flex-direction: column;
   justify-content: center;
   margin: 0;
-  width: 65%;
+  width: 100%;
 }
 
-.infoSection h3{
-  margin: 0;
+.infoSection h2{
+  margin-top: 0.5rem;
+  margin-bottom: 0;
+  padding: 0.5rem;
 }
 
 .sectionHeader{
-   display: flex;
-   justify-content: center;
+  display: flex;
+  justify-content: center;
+  margin-top: 4.5rem;
+  margin-bottom: 2.5rem;
 }
+
 
  /* ============================================================ */
 
+
 @keyframes App-logo-spin {
-   from { transform: rotate(0deg); }
-   to { transform: rotate(360deg); }
+  from { transform: rotate(0deg); }
+  to { transform: rotate(360deg); }
 }
  
 @keyframes fadein {
-   from { opacity: 0; }
-   to   { opacity: 1; }
+  from { opacity: 0; }
+  to   { opacity: 1; }
 }

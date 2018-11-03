@@ -65,9 +65,6 @@ class LoginPage extends Component {
    //   console.log(this.props.login);
    //     console.log(this.props.user);
     return (
-       
-       
-       
       <div className="loginForm">
         { this.renderAlert() }
         <form className="form" onSubmit={this.login}>

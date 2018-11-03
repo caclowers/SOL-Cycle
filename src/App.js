@@ -1,5 +1,10 @@
 import React from 'react';
-import { HashRouter as Router, Route, Redirect, Switch } from 'react-router-dom';
+import {
+  HashRouter as Router,
+  Route,
+  Redirect,
+  Switch 
+} from 'react-router-dom';
 
 import Header from './components/Header/Header';
 import LoginPage from './components/LoginPage/LoginPage';

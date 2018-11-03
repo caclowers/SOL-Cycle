@@ -63,7 +63,7 @@ class UserPage extends Component {
     };
   };
 
-  getHistory = (event) => {
+  getForecast = (event) => {
     axios(`https://api.darksky.net/forecast/cbbd7ef6d4a32d1afa75ace009b3393d/${this.props.coordinateStore.lat},${this.props.coordinateStore.lng}`)
       .then((response) => {
         // console.log(response);
@@ -261,7 +261,7 @@ class UserPage extends Component {
                   </div >
                 </form>
               </SimpleModalLauncher>
-              <form onClick={this.getHistory}>
+              <form onClick={this.getForecast}>
                 <SimpleModalLauncher id="graphModal" buttonLabel="7 Day Forecast" >
                   <div id="graphModal"><h1>{this.props.displayLocation.city[0].toUpperCase() + this.props.displayLocation.city.slice(1)},&nbsp;{this.props.displayLocation.state}</h1>
                     {/* <h3>{graphArrayData}</h3> */}

@@ -21,16 +21,16 @@ class InfoList extends Component {
 
           <h3>
             Ultraviolet light is measured on a scale from 0 to 11+
-                </h3>
+          </h3>
           <h3>
             The UV spectrum has both beneficial and harmful effets to human health
-                </h3>
+          </h3>
           <h3>
             UV is responsible for the formation of bone-strengthening vitamin D in humans (specifically, UVB)
-                </h3>
+          </h3>
           <h3>
             However, suntan and sunburn are familiar effects of over-exposure to UV, along with a higher risk of SKIN CANCER
-                  </h3>
+          </h3>
 
         </div>
         <div className="infoSection">
@@ -118,7 +118,7 @@ class InfoList extends Component {
             <h2 className="h2ToCenter">11+ : EXTREME</h2>
           </div>
           <h2>11 or more means EXTREME RISK of harm from unprotected sun exposure</h2>
-          <h2>Take all precautions because unprotected skin and eyes can burn in minutes</h2>
+          <h2>Take ALL precautions because unprotected skin and eyes can burn in minutes</h2>
           <ul>
             <li>
               Try to AVOID sun exposure between 10 a.m. and 4 p.m.

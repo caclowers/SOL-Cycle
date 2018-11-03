@@ -146,7 +146,6 @@ h1{
   width: 75%;
 }
 
-
 .h2ToCenter{
   background-color: #052F5F;
   border: 5px solid #FDCE38;
@@ -169,6 +168,12 @@ h1{
 .infoSection h2{
   margin-top: 0.5rem;
   margin-bottom: 0;
+  padding: 0.5rem;
+}
+
+.infoSection li{
+  font-size: 1rem;
+  margin: 0;
   padding: 0.5rem;
 }
 

@@ -3,8 +3,6 @@
 
 ## Welcome, Friends
 
-___
-
 ### Finding the current UV Index on a weather website is almost universally cumbersome
 
 #### **_SOL-Cycle_** is a web application which creates an *easy-to-navigate* UV Index search experience
